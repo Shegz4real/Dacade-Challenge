@@ -123,7 +123,7 @@ $('#body').on('click', '#tipbutton', async function(event){
 
   const tipAmount = tipValue * 1000000000000000000,
 
-  await contractInstance.methods.tipProject(dataIndex, tipValue, { amount: tipAmount }).catch(console.error);
+  await contractInstance.methods.tipProject(dataIndex, tipAmount, { amount: tipAmount }).catch(console.error);
 
   console.log("Tipped successfully")
 
