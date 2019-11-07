@@ -119,9 +119,9 @@ $('#body').on('click', '#tipbutton', async function(event){
   dataIndex = ProjectArray.length
 
   var tipValue = ($('#tipValue').val());
-  console.log(tipValue)
+  console.log(tipValue);
 
-  const tipAmount = tipValue * 1000000000000000000,
+  const tipAmount = tipValue * 1000000000000000000;
 
   await contractInstance.methods.tipProject(dataIndex, tipAmount, { amount: tipAmount }).catch(console.error);
 
