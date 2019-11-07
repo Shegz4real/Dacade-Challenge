@@ -157,7 +157,7 @@ $('#regBtn').click(async function(){
   
 
   ProjectArray.push({
-    id: newProject.id,
+    id: newProject.user,
     images: newProject.images,
 
     name: newProject.name,
