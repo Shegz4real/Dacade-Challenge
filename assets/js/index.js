@@ -1,33 +1,25 @@
-
-  
 const contractSource = `
 contract Projectify =
 
-  record project = {
-    user:int,
-    name: string,
-    price:int,
-    purchased:bool,
-    documentation : string,
-    link : string,
-    images:string,
-    owner:address,
-    timestamp: int
-    
-    }
-  
+  record project =
+    { user:int,
+      name: string,
+      price:int,
+      purchased:bool,
+      documentation : string,
+      link : string,
+      images:string,
+      owner:address,
+      timestamp: int }
   
   record state = 
-    {
-      projectLength : int,
-      projects : map(int, project)
-    }
+    { projectLength : int,
+      projects : map(int, project) }
   
   entrypoint init() = 
     { projects = {}, 
       projectLength = 0}
   
-    
   entrypoint getProjectLength() : int = 
     state.projectLength
   
@@ -35,7 +27,6 @@ contract Projectify =
     let newProject = {user=getProjectLength() + 1, name=_name, price=_price, documentation = _documentation, link = _link, images=_images,purchased=false, owner=Call.caller, timestamp = Chain.timestamp}
     let index = getProjectLength() + 1
     put(state{projects[index] = newProject , projectLength  = index})
-
   
   entrypoint getProject(index:int) : project = 
     switch(Map.lookup(index, state.projects))
@@ -44,89 +35,45 @@ contract Projectify =
   
   payable stateful entrypoint tipProject(_user:int, tip:int)=
     let tipProject = getProject(_user) // get the current Project with the user
-    
     let  _seller  = tipProject.owner : address
-    
     require(tipProject.user> 0,abort("NOT A Project user"))
-  
     Chain.spend(_seller, tip)
-    
-    "Thank you for the tip"
   
-    `;
-
+    "Thank you for the tip"
+`;
 
 const contractAddress = 'ct_spc6oNbPRdV7nXd7tt5vbZJq23KovaaQL5xZ9sV5Sfc6fPjZa';
 var ProjectArray = [];
 var client = null;
+var contractInstance = null;
 var ProjectLength = 0;
 
-
-
 function renderProject() {
-  ProjectArray = ProjectArray.sort(function (a, b) {
-    return b.Price - a.Price
-  })
+  ProjectArray = ProjectArray.sort((a, b) => b.Price - a.Price)
   var template = $('#template').html();
-
   Mustache.parse(template);
-  var rendered = Mustache.render(template, {
-    ProjectArray
-  });
-
-
-
-
+  var rendered = Mustache.render(template, {ProjectArray});
   $('#body').html(rendered);
   console.log("rendering")
-}
-//Create a asynchronous read call for our smart contract
-async function callStatic(func, args) {
-  //Create a new contract instance that we can interact with
-  const contract = await client.getContractInstance(contractSource, {
-    contractAddress
-  });
-  //Make a call to get data of smart contract func, with specefied arguments
-
-  const calledGet = await contract.call(func, args, {
-    callStatic: true
-  }).catch(e => console.error(e));
- 
-  const decodedGet = await calledGet.decode().catch(e => console.error(e));
-
-  return decodedGet;
-}
-
-async function contractCall(func, args, value) {
-  const contract = await client.getContractInstance(contractSource, {
-    contractAddress
-  });
-  //Make a call to write smart contract func, with aeon value input
-  const calledSet = await contract.call(func, args, {
-    amount: value
-  }).catch(e => console.error(e));
-
-  return calledSet;
 }
 
 window.addEventListener('load', async () => {
   $("loading").show();
 
-  client = await Ae.Aepp()
+  client = await Ae.Aepp();
+  contractInstance = await client.getContractInstance(contractSource, {contractAddress});
 
-  ProjectLength = await callStatic('getProjectLength', []);
+  ProjectLength = (await contractInstance.methods.getProjectLength()).decodedResult;
 
 
   for (let i = 1; i <= ProjectLength; i++) {
-    const persons = await callStatic('getProject', [i]);
+    const persons = (await contractInstance.methods.getProject(i)).decodedResult;
 
     console.log( "pushing to array")
-
 
     ProjectArray.push({
       id: persons.id,
       images: persons.images,
-
       name: persons.name,
       documentation: persons.documentation,
       price: persons.price,
@@ -139,10 +86,6 @@ window.addEventListener('load', async () => {
   }
 });
 
-
-
-
-
 $('#regBtn').click(async function(){
   $("#loading").show();
   console.log("Register buttonw was clicked")
@@ -153,26 +96,21 @@ $('#regBtn').click(async function(){
   const Project_link = ($('#projectlink').val());
 
 
-  const newProject = await contractCall('addProject', [Project_name, Project_price, Project_images,Project_description, Project_link],parseInt(Project_price, 10));
-  
+  const newProject = await contractInstance.methods.addProject(Project_name, Project_price, Project_images,Project_description, Project_link, { amount: Project_price }).catch(console.error);
 
   ProjectArray.push({
     id: newProject.id,
     images: newProject.images,
-
     name: newProject.name,
     description: newProject.description,
     link: newProject.link,
     price : newProject.price
   })
 
-
   renderProject();
- 
 
   $("#loading").hide();
   location.reload(true)
-
 });
 
 $('#body').on('click', '#tipbutton', async function(event){
@@ -180,21 +118,15 @@ $('#body').on('click', '#tipbutton', async function(event){
 
   dataIndex = ProjectArray.length
 
-  const tipValue = ($('#tipValue').val());
+  var tipValue = ($('#tipValue').val());
   console.log(tipValue)
 
-  
+  const tipAmount = tipValue * 1000000000000000000,
 
-  
-
-
-  await contractCall('tipProject', [dataIndex, tipValue], tipValue)
+  await contractInstance.methods.tipProject(dataIndex, tipValue, { amount: tipAmount }).catch(console.error);
 
   console.log("Tipped successfully")
 
   $('#tipValue').val('');
-
-
   $("#loading").hide();
-
 });

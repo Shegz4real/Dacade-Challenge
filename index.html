@@ -1,344 +1,287 @@
 <!DOCTYPE html>
 <html>
-
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Projectify</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="all,follow">
+
+  <title>Projectify</title>
+
   <!-- Bootstrap CSS-->
-  <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
-  <!-- <link rel="stylesheet" href="css/register.css"> -->
+  <link rel="stylesheet" href="assets/vendor/bootstrap/css/bootstrap.min.css">
+  <!-- <link rel="stylesheet" href="assets/css/register.css"> -->
   <!-- Font Awesome CSS-->
-  <link rel="stylesheet" href="vendor/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="assets/vendor/font-awesome/css/font-awesome.min.css">
   <!-- Custom icon font-->
-  <link rel="stylesheet" href="css/fontastic.css">
+  <link rel="stylesheet" href="assets/css/fontastic.css">
   <!-- Google fonts - Open Sans-->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
+  <link rel="stylesheet" href="assets/https://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
   <!-- Fancybox-->
-  <link rel="stylesheet" href="vendor/@fancyapps/fancybox/jquery.fancybox.min.css">
+  <link rel="stylesheet" href="assets/vendor/@fancyapps/fancybox/jquery.fancybox.min.css">
   <!-- theme stylesheet-->
-  <link rel="stylesheet" href="css/style.default.css" id="theme-stylesheet">
+  <link rel="stylesheet" href="assets/css/style.default.css" id="theme-stylesheet">
   <!-- Custom stylesheet - for your changes-->
-  <link rel="stylesheet" href="css/custom.css">
-  <link rel="stylesheet" href="css/loader.css">
-  <link rel="stylesheet" href="css/scrollbar.css">
-  <!-- Favicon-->
-  <link rel="shortcut icon" href="favicon.png">
+  <link rel="stylesheet" href="assets/css/custom.css">
+  <link rel="stylesheet" href="assets/css/loader.css">
+  <link rel="stylesheet" href="assets/css/scrollbar.css">
   <!-- Tweaks for older IEs-->
   <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
 </head>
-
-
 <body >
   <div id="scrollbar">
-  
-
-  
     <div id="loading">
+      <svg width="30" height="30" viewBox="0 0 300 300">
+        <defs>
+          <linearGradient id="gradient-fill" gradientUnits="userSpaceOnUse" x1="0" y1="300" x2="300" y2="0">
+            <stop offset="0%">
+              <animate attributeName="stop-color" values="#00E06B;#CB0255;#00E06B" dur="5s" repeatCount="indefinite" />
+            </stop>
+            <stop offset="100%">
+              <animate attributeName="stop-color" values="#04AFC8;#8904C5;#04AFC8" dur="8s" repeatCount="indefinite" />
+            </stop>
+          </linearGradient>
+          <clipPath id="clip">
+            <rect class="square s1" x="0" y="0" rx="12" ry="12" height="90" width="90"></rect>
+            <rect class="square s2" x="100" y="0" rx="12" ry="12" height="90" width="90"></rect>
+            <rect class="square s3" x="200" y="0" rx="12" ry="12" height="90" width="90"></rect>
+            <rect class="square s4" x="0" y="100" rx="12" ry="12" height="90" width="90"></rect>
+            <rect class="square s5" x="200" y="100" rx="12" ry="12" height="90" width="90"></rect>
+            <rect class="square s6" x="0" y="200" rx="12" ry="12" height="90" width="90"></rect>
+            <rect class="square s7" x="100" y="200" rx="12" ry="12" height="90" width="90"></rect>
+          </clipPath>
+        </defs>
+        <rect class="gradient" clip-path="url('#clip')" height="300" width="300"></rect>
+      </svg>
+    </div>
+    <header class="header">
+    
+      <!-- Main Navbar-->
+      <nav class="navbar navbar-expand-lg">
+        <div class="search-area">
+          <div class="search-area-inner d-flex align-items-center justify-content-center">
+            <div class="close-btn"><i class="icon-close"></i></div>
+            <div class="row d-flex justify-content-center">
+              <div class="col-md-8">
+                <form action="#">
+                  <div class="form-group">
+                    <input type="search" name="search" id="search" placeholder="What are you looking for?">
+                    <button type="submit" class="submit"><i class="icon-search-1"></i></button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
       
- 
-        <svg width="30" height="30" viewBox="0 0 300 300">
-          <defs>
-            <linearGradient id="gradient-fill" gradientUnits="userSpaceOnUse" x1="0" y1="300" x2="300" y2="0">
-              <stop offset="0%">
-                <animate attributeName="stop-color" values="#00E06B;#CB0255;#00E06B" dur="5s" repeatCount="indefinite" />
-              </stop>
-              <stop offset="100%">
-                <animate attributeName="stop-color" values="#04AFC8;#8904C5;#04AFC8" dur="8s" repeatCount="indefinite" />
-              </stop>
-            </linearGradient>
-            <clipPath id="clip">
-              <rect class="square s1" x="0" y="0" rx="12" ry="12" height="90" width="90"></rect>
-              <rect class="square s2" x="100" y="0" rx="12" ry="12" height="90" width="90"></rect>
-              <rect class="square s3" x="200" y="0" rx="12" ry="12" height="90" width="90"></rect>
-              <rect class="square s4" x="0" y="100" rx="12" ry="12" height="90" width="90"></rect>
-              <rect class="square s5" x="200" y="100" rx="12" ry="12" height="90" width="90"></rect>
-              <rect class="square s6" x="0" y="200" rx="12" ry="12" height="90" width="90"></rect>
-              <rect class="square s7" x="100" y="200" rx="12" ry="12" height="90" width="90"></rect>
-            </clipPath>
-          </defs>
-          <rect class="gradient" clip-path="url('#clip')" height="300" width="300"></rect>
-        </svg>
-      </div>
-
-    
-  <header class="header">
-    
-    <!-- Main Navbar-->
-    <nav class="navbar navbar-expand-lg">
-      <div class="search-area">
-        <div class="search-area-inner d-flex align-items-center justify-content-center">
-          <div class="close-btn"><i class="icon-close"></i></div>
-          <div class="row d-flex justify-content-center">
-            <div class="col-md-8">
-              <form action="#">
-                <div class="form-group">
-                  <input type="search" name="search" id="search" placeholder="What are you looking for?">
-                  <button type="submit" class="submit"><i class="icon-search-1"></i></button>
-                </div>
-              </form>
-            </div>
+        <div class="container">
+          <!-- Navbar Brand -->
+          <div class="navbar-header d-flex align-items-center justify-content-between">
+            <!-- Navbar Brand --><a href="index.html" class="navbar-brand">Projectify</a>
+            <!-- Toggle Button-->
+            <button type="button" data-toggle="collapse" data-target="#navbarcollapse" aria-controls="navbarcollapse"
+              aria-expanded="false" aria-label="Toggle navigation"
+              class="navbar-toggler"><span></span><span></span><span></span></button>
+          </div>
+          <!-- Navbar Menu -->
+          <div id="navbarcollapse" class="collapse navbar-collapse">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item"><a href="index.html" class="nav-link active ">Home</a></li>
+            </ul>
           </div>
         </div>
-      </div>
-    
-      <div class="container">
-        <!-- Navbar Brand -->
-        <div class="navbar-header d-flex align-items-center justify-content-between">
-          <!-- Navbar Brand --><a href="index.html" class="navbar-brand">Projectify</a>
-          <!-- Toggle Button-->
-          <button type="button" data-toggle="collapse" data-target="#navbarcollapse" aria-controls="navbarcollapse"
-            aria-expanded="false" aria-label="Toggle navigation"
-            class="navbar-toggler"><span></span><span></span><span></span></button>
-        </div>
-        <!-- Navbar Menu -->
-        <div id="navbarcollapse" class="collapse navbar-collapse">
-          <ul class="navbar-nav ml-auto">
-            <li class="nav-item"><a href="index.html" class="nav-link active ">Home</a>
-            </li>
-
-          </ul>
-
-        </div>
-      </div>
-    </nav>
-  </header>
+      </nav>
+    </header>
 
   
-  <!-- Hero Section-->
-  <section style="background: url(img/hero.jpg); background-size: cover; background-position: center center"
-    class="hero">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-7">
-          <h1>A decentralized platform for University projects</h1>
-        </div>
-      </div><a href=".intro" class="continue link-scroll"><i class="fa fa-long-arrow-down"></i> Scroll Down</a>
-    </div>
-  </section>
-
-
-
-
-  <!-- Intro Section-->
-  <section class="intro">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-8">
-          <h2 class="h3">Landify, Home of</h2>
-          <p class="text-big">Quality Projects, <strong>A decentralized Platform</strong> where <strong>Projects can be
-              uploaded to the blockchain and purchased</strong>. A Unijos Project</p>
-        </div>
-      </div>
-    </div>
-  </section>
-  <section class="featured-posts no-padding-top">
-
-
-      <!-- Post-->
-
-      <div id="body">
-
-      </div>
-
-
-
-
-  </section>
-  <!-- Divider Section-->
-  <section style="background: url(img/divider-bg.jpg); background-size: cover; background-position: center bottom"
-    class="divider">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-7">
-          <h2>Keep Scrolling For More Amazing Content</h2>
-        </div>
-      </div>
-    </div>
-  </section>
-
-
-
-
-
-
-  <!-- Registration Form -->
-  <section>
-    <div class="container">
-
-
-
-
-      <div style="text-align: center;">
-        <h1 style="text-align: center;">Register</h1>
-        <p style="text-align: center;" class="text-h3">Fill the fields below correctly</p>
-      </div>
-
-
-
-
-
-      <div>
-        <input id="Username" type="text" class="form-control" placeholder="Your Name">
-      </div>
-
-
-
-
-
-      <div class="col mt-4">
-        <input id="imagelink" type="text" class="form-control" placeholder="image url/link">
-      </div>
-      <div class="col mt-4">
-        <input id="projectdescription" type="text" class="form-control" placeholder="description">
-      </div>
-      <div class="col mt-4">
-        <input id="projectlink" type="text" class="form-control" placeholder="link to project">
-      </div>
-
-
-
-      <center>
-        <div>
-          <button id="regBtn" class="btn btn-primary mt-4"
-            style=" background-color: whitesmoke; border-color: black;">Submit</button>
-        </div>
-      </center>
-
-
-
-
-  
-    </div>
-
-
-  </section>
-
-
-
-  <!-- Gallery Section-->
-  <section class="gallery no-padding">
-    <div class="row">
-      <div class="mix col-lg-3 col-md-3 col-sm-6">
-        <div class="item"><a href="img/gallery-1.jpg" data-fancybox="gallery" class="image"><img src="img/gallery-1.jpg"
-              alt="..." class="img-fluid">
-            <div class="overlay d-flex align-items-center justify-content-center"><i class="icon-search"></i>
-            </div>
-          </a></div>
-      </div>
-      <div class="mix col-lg-3 col-md-3 col-sm-6">
-        <div class="item"><a href="img/gallery-2.jpg" data-fancybox="gallery" class="image"><img src="img/gallery-2.jpg"
-              alt="..." class="img-fluid">
-            <div class="overlay d-flex align-items-center justify-content-center"><i class="icon-search"></i>
-            </div>
-          </a></div>
-      </div>
-      <div class="mix col-lg-3 col-md-3 col-sm-6">
-        <div class="item"><a href="img/gallery-3.jpg" data-fancybox="gallery" class="image"><img src="img/gallery-3.jpg"
-              alt="..." class="img-fluid">
-            <div class="overlay d-flex align-items-center justify-content-center"><i class="icon-search"></i>
-            </div>
-          </a></div>
-      </div>
-      <div class="mix col-lg-3 col-md-3 col-sm-6">
-        <div class="item"><a href="img/gallery-4.jpg" data-fancybox="gallery" class="image"><img src="img/gallery-4.jpg"
-              alt="..." class="img-fluid">
-            <div class="overlay d-flex align-items-center justify-content-center"><i class="icon-search"></i>
-            </div>
-          </a></div>
-      </div>
-    </div>
-  </section>
-  <!-- Page Footer-->
-  <footer class="main-footer">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-4">
-          <div class="logo">
-            <h6 class="text-white">Projectify</h6>
-          </div>
-          <div class="contact-details">
-            <p>Unijos, Main Campus, UjHub</p>
-            <p>Phone: (234) 09021990562</p>
-            <p>Email: <a href="mailto:Emmanuelsumeh@gmail.com">shegz4real@gmail.com</a></p>
-
-          </div>
-        </div>
-
-
-      </div>
-    </div>
-    <div class="copyrights">
+    <!-- Hero Section-->
+    <section style="background: url(assets/assets/img/hero.jpg); background-size: cover; background-position: center center"
+      class="hero">
       <div class="container">
         <div class="row">
-          <div class="col-md-6">
-            <p>&copy; 2019. All rights reserved. Your great site.</p>
+          <div class="col-lg-7">
+            <h1>A decentralized platform for University projects</h1>
           </div>
+        </div><a href="#intro" class="continue link-scroll"><i class="fa fa-long-arrow-down"></i> Scroll Down</a>
+      </div>
+    </section>
+
+    <!-- Intro Section-->
+    <section id="intro">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8">
+            <h2 class="h3">Landify, Home of</h2>
+            <p class="text-big">
+              Quality Projects, <strong>A decentralized Platform</strong> where <strong>Projects can be uploaded to the blockchain and purchased</strong>. A Unijos Project
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="featured-posts no-padding-top">
+      <!-- Post-->
+      <div id="body"></div>
+    </section>
+    <!-- Divider Section-->
+    <section style="background: url(assets/img/divider-bg.jpg); background-size: cover; background-position: center bottom"
+      class="divider">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-7">
+            <h2>Keep Scrolling For More Amazing Content</h2>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Registration Form -->
+    <section>
+      <div class="container">
+        <div style="text-align: center;">
+          <h1 style="text-align: center;">Register</h1>
+          <p style="text-align: center;" class="text-h3">Fill the fields below correctly</p>
+        </div>
+        <div>
+          <input id="Username" type="text" class="form-control" placeholder="Your Name">
+        </div>
+        <div class="col mt-4">
+          <input id="imagelink" type="text" class="form-control" placeholder="image url/link">
+        </div>
+        <div class="col mt-4">
+          <input id="projectdescription" type="text" class="form-control" placeholder="description">
+        </div>
+        <div class="col mt-4">
+          <input id="projectlink" type="text" class="form-control" placeholder="link to project">
+        </div>
+        <center>
+          <div>
+            <button id="regBtn" class="btn btn-success mt-4">Submit</button>
+          </div>
+        </center>
+      </div>
+    </section>
+
+    <!-- Gallery Section-->
+    <section class="gallery no-padding">
+      <div class="row">
+        <div class="mix col-lg-3 col-md-3 col-sm-6">
+          <div class="item">
+            <a href="assets/img/gallery-1.jpg" data-fancybox="gallery" class="image">
+              <img src="assets/img/gallery-1.jpg" alt="..." class="img-fluid">
+              <div class="overlay d-flex align-items-center justify-content-center"><i class="icon-search"></i></div>
+            </a>
+          </div>
+        </div>
+        <div class="mix col-lg-3 col-md-3 col-sm-6">
+          <div class="item">
+            <a href="assets/img/gallery-2.jpg" data-fancybox="gallery" class="image"><img src="assets/img/gallery-2.jpg" alt="..." class="img-fluid">
+              <div class="overlay d-flex align-items-center justify-content-center"><i class="icon-search"></i>
+              </div>
+            </a></div>
+        </div>
+        <div class="mix col-lg-3 col-md-3 col-sm-6">
+          <div class="item"><a href="assets/img/gallery-3.jpg" data-fancybox="gallery" class="image"><img src="assets/img/gallery-3.jpg"
+                alt="..." class="img-fluid">
+              <div class="overlay d-flex align-items-center justify-content-center"><i class="icon-search"></i>
+              </div>
+            </a></div>
+        </div>
+        <div class="mix col-lg-3 col-md-3 col-sm-6">
+          <div class="item"><a href="assets/img/gallery-4.jpg" data-fancybox="gallery" class="image"><img src="assets/img/gallery-4.jpg"
+                alt="..." class="img-fluid">
+              <div class="overlay d-flex align-items-center justify-content-center"><i class="icon-search"></i>
+              </div>
+            </a></div>
+        </div>
+      </div>
+    </section>
+    <!-- Page Footer-->
+    <footer class="main-footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4">
+            <div class="logo">
+              <h6 class="text-white">Projectify</h6>
+            </div>
+            <div class="contact-details">
+              <p>Unijos, Main Campus, UjHub</p>
+              <p>Phone: (234) 09021990562</p>
+              <p>Email: <a href="mailto:Emmanuelsumeh@gmail.com">shegz4real@gmail.com</a></p>
+
+            </div>
+          </div>
+
 
         </div>
       </div>
-    </div>
-  
-  </footer>
-</div>
+      <div class="copyrights">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6">
+              <p>&copy; 2019. All rights reserved. Your great site.</p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    
+    </footer>
+  </div>
 
 
 
   <!-- JavaScript files-->
   <script id="template" type="x-tmpl-mustache">
     {{#ProjectArray}}
-        <div class="row d-flex align-items-stretch">
-            <div class="text col-lg-7">
-              <div class="text-inner d-flex align-items-center">
-                <div class="content">
-                  <header class="post-header">
-                    <div class="category"><a href="#">{{name}}</a><a href="#">Project</a></div><a href="post.html">
-                      <h2 class="h4">{{name}} built this project</h2></a>
-                  </header>
-                  <p>{{documentation}}.</p>
-                  <footer class="post-footer d-flex align-items-center"><a href="#" class="author d-flex align-items-center flex-wrap">
-                      <div class="avatar"><img src="{{images}}" alt="..." class="img-fluid"></div>
-                      <div class="title"><span>{{name}}</span></div></a>
-                    <div class="date"><i class="icon-clock"></i> {{timestamp}}</div>
-                    <div class="comments"><i class="icon-comment"></i>12</div>
-                  </footer>
+      <div class="row d-flex align-items-stretch">
+        <div class="text col-lg-7">
+          <div class="text-inner d-flex align-items-center">
+            <div class="content">
+              <header class="post-header">
+                <div class="category">
+                  <a href="#">{{name}}</a>
+                  <a href="#">Project</a>
                 </div>
-              </div>
+                <a href="post.html">
+                  <h2 class="h4">{{name}} built this project</h2>
+                </a>
+              </header>
+              <p>{{documentation}}.</p>
+              <footer class="post-footer d-flex align-items-center">
+                <a href="#" class="author d-flex align-items-center flex-wrap">
+                  <div class="avatar"><img src="{{images}}" alt="..." class="img-fluid"></div>
+                  <div class="title"><span>{{name}}</span></div>
+                </a>
+                <div class="date"><i class="icon-clock"></i> {{timestamp}}</div>
+                <div class="comments"><i class="icon-comment"></i>12</div>
+              </footer>
             </div>
-            <div class="image col-lg-5"><img src="{{ images }}" alt="..."></div>
           </div>
-          <center>
-            <div><input type="number" id= "tipValue" placeholder = "Tip the owner "></div>
-          <div><button id= "tipbutton" style= "background-color : whitesmoke; border-color : black; ">Fund Project</button></div>
-          </center>
-          
-          {{/ProjectArray}}
-      
-
-    </script>
-
-  
+        </div>
+        <div class="image col-lg-5"><img src="{{ images }}" alt="..."></div>
+      </div>
+      <center>
+        <div><input type="number" id= "tipValue" placeholder = "Tip the owner "></div>
+      <div><button id= "tipbutton" class="btn-success">Fund Project</button></div>
+      </center>
+    {{/ProjectArray}}
+  </script>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/popper.js/umd/popper.min.js"> </script>
-  <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
-  <script src="vendor/jquery.cookie/jquery.cookie.js"> </script>
-  <script src="vendor/@fancyapps/fancybox/jquery.fancybox.min.js"></script>
+  <script src="assets/vendor/jquery/jquery.min.js"></script>
+  <script src="assets/vendor/popper.js/umd/popper.min.js"> </script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+  <script src="assets/vendor/jquery.cookie/jquery.cookie.js"> </script>
+  <script src="assets/vendor/@fancyapps/fancybox/jquery.fancybox.min.js"></script>
   <script src="js/front.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.0.1/mustache.js"></script>
   <script src="https://unpkg.com/@aeternity/aepp-sdk/dist/aepp-sdk.browser-script.js"></script>
 
-  <script src="index.js"></script>
-  <!-- <script src="js/register.js"></script> -->
-
+  <script src="assets/js/index.js"></script>
 </body>
-
-
-
 </html>
