@@ -180,7 +180,9 @@ $('#regBtn').click(async function(){
 $('#body').on('click', '.tipbutton', async function(event){
   $("#loading").show();
 
-  dataIndex = ProjectArray.length
+  const dataIndex = event.target.id
+  
+
 
   const tipValue = ($('#valueoftip').val());
   const tip2 = ($('.tipValue').val())
