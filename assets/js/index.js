@@ -124,7 +124,7 @@ window.addEventListener('load', async () => {
 
 
     ProjectArray.push({
-      user: persons.user,
+      id: persons.user,
       images: persons.images,
 
       name: persons.name,
@@ -157,7 +157,7 @@ $('#regBtn').click(async function(){
   
 
   ProjectArray.push({
-    user: newProject.user,
+    id: ProjectArray.length + 1,
     images: newProject.images,
 
     name: newProject.name,
