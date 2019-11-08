@@ -184,10 +184,10 @@ $('#body').on('click', '.tipbutton', async function(event){
   
 
 
-  const tipValue = ($('#valueoftip').val());
-  const tip2 = ($('.tipValue').val())
+  
+  const tipValue = ($('.tipValue').val())
   console.log(tipValue)
-  console.log(tip2)
+ 
   console.log(dataIndex)
 
   
