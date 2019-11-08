@@ -154,16 +154,17 @@ $('#regBtn').click(async function(){
 
 
   await contractCall('addProject', [Project_name, Project_price, Project_images,Project_description, Project_link],parseInt(Project_price, 10));
+  newProject = await callStatic('getProject', [ProjectArray.length + 1])
   
 
   ProjectArray.push({
-    id: ProjectArray.length + 1,
-    images: Project_images,
+    id: newProject.user,
+    images: newProject.images,
 
-    name: Project_name,
-    description: Project_description,
-    link: Project_link,
-    price : Project_price
+    name: newProject.name,
+    description: newProject.description,
+    link: newProject.link,
+    price : newProject.price
   })
 
 
