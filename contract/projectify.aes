@@ -1,30 +1,24 @@
 contract Projectify =
 
-  record project = {
-    user:int,
-    name: string,
-    price:int,
-    purchased:bool,
-    documentation : string,
-    link : string,
-    images:string,
-    owner:address,
-    timestamp: int
-    
-    }
-  
+  record project =
+    { user:int,
+      name: string,
+      price:int,
+      purchased:bool,
+      documentation : string,
+      link : string,
+      images:string,
+      owner:address,
+      timestamp: int }
   
   record state = 
-    {
-      projectLength : int,
-      projects : map(int, project)
-    }
+    { projectLength : int,
+      projects : map(int, project) }
   
   entrypoint init() = 
     { projects = {}, 
       projectLength = 0}
   
-    
   entrypoint getProjectLength() : int = 
     state.projectLength
   
@@ -32,7 +26,6 @@ contract Projectify =
     let newProject = {user=getProjectLength() + 1, name=_name, price=_price, documentation = _documentation, link = _link, images=_images,purchased=false, owner=Call.caller, timestamp = Chain.timestamp}
     let index = getProjectLength() + 1
     put(state{projects[index] = newProject , projectLength  = index})
-
   
   entrypoint getProject(index:int) : project = 
     switch(Map.lookup(index, state.projects))
@@ -41,11 +34,8 @@ contract Projectify =
   
   payable stateful entrypoint tipProject(_user:int, tip:int)=
     let tipProject = getProject(_user) // get the current Project with the user
-    
     let  _seller  = tipProject.owner : address
-    
     require(tipProject.user> 0,abort("NOT A Project user"))
-  
     Chain.spend(_seller, tip)
-    
+  
     "Thank you for the tip"
