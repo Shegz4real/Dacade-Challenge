@@ -4,7 +4,7 @@ const contractSource = `
 contract Projectify =
 
   record project = {
-    user:int,
+    id:int,
     name: string,
     price:int,
     purchased:bool,
@@ -32,7 +32,7 @@ contract Projectify =
     state.projectLength
   
   payable stateful entrypoint addProject(_name:string, _price:int, _images:string, _documentation : string, _link : string ) =
-    let newProject = {user=getProjectLength() + 1, name=_name, price=_price, documentation = _documentation, link = _link, images=_images,purchased=false, owner=Call.caller, timestamp = Chain.timestamp}
+    let newProject = {id=getProjectLength() + 1, name=_name, price=_price, documentation = _documentation, link = _link, images=_images,purchased=false, owner=Call.caller, timestamp = Chain.timestamp}
     let index = getProjectLength() + 1
     put(state{projects[index] = newProject , projectLength  = index})
 
@@ -42,12 +42,12 @@ contract Projectify =
       None => abort("Project does not exist with this index")
       Some(x) => x  
   
-  payable stateful entrypoint tipProject(_user:int, tip:int)=
-    let tipProject = getProject(_user) // get the current Project with the user
+  payable stateful entrypoint tipProject(_id:int, tip:int)=
+    let tipProject = getProject(_id) // get the current Project with the id
     
     let  _seller  = tipProject.owner : address
     
-    require(tipProject.user> 0,abort("NOT A Project user"))
+    require(tipProject.id> 0,abort("NOT A Project id"))
   
     Chain.spend(_seller, tip)
     
@@ -56,7 +56,7 @@ contract Projectify =
     `;
 
 
-const contractAddress = 'ct_spc6oNbPRdV7nXd7tt5vbZJq23KovaaQL5xZ9sV5Sfc6fPjZa';
+const contractAddress = 'ct_kqXssuutvMsCBUtML8hAmsErtwEsHLgcthRwsJBUkCMwpBWch';
 var ProjectArray = [];
 var client = null;
 var ProjectLength = 0;
@@ -124,7 +124,7 @@ window.addEventListener('load', async () => {
 
 
     ProjectArray.push({
-      id: persons.user,
+      id: persons.id,
       images: persons.images,
 
       name: persons.name,
@@ -153,12 +153,12 @@ $('#regBtn').click(async function(){
   const Project_link = ($('#projectlink').val());
 
 
-  newProject = await contractCall('addProject', [Project_name, Project_price, Project_images,Project_description, Project_link],parseInt(Project_price, 10));
+  newProject =await contractCall('addProject', [Project_name, Project_price, Project_images,Project_description, Project_link],parseInt(Project_price, 10));
   
   
 
   ProjectArray.push({
-    id: newProject.user,
+    id: newProject.id,
     images: newProject.images,
 
     name: newProject.name,
