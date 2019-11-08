@@ -182,7 +182,7 @@ $('#body').on('click', '.tipbutton', async function(event){
 
   dataIndex = ProjectArray.length
 
-  const tipValue = $('#tipValue').val();
+  const tipValue = ($('#tipValue').val());
   console.log(tipValue)
   console.log(dataIndex)
 
