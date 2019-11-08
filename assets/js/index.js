@@ -177,12 +177,12 @@ $('#regBtn').click(async function(){
 
 });
 
-$('#body').on('click', '#tipbutton', async function(event){
+$('#body').on('click', '.tipbutton', async function(event){
   $("#loading").show();
 
   dataIndex = ProjectArray.length
 
-  const tipValue = parseInt($('.tipvalue').val());
+  const tipValue = parseInt($('#tipvalue').val());
   console.log(tipValue)
   console.log(dataIndex)
 
