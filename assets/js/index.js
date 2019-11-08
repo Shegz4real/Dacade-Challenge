@@ -189,8 +189,13 @@ $('#body').on('click', '#tipbutton', async function(event){
 
   
 
+  var tobetipped = await callStatic('getProject', [dataIndex])
 
-  await contractCall('tipProject', [dataIndex, tipValue], tipValue)
+  newid = tobetipped.id
+
+
+  
+  await contractCall('tipProject', [newid, tipValue], tipValue)
 
   console.log("Tipped successfully")
 
