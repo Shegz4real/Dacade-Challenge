@@ -153,17 +153,17 @@ $('#regBtn').click(async function(){
   const Project_link = ($('#projectlink').val());
 
 
-  const newProject = await contractCall('addProject', [Project_name, Project_price, Project_images,Project_description, Project_link],parseInt(Project_price, 10));
+  await contractCall('addProject', [Project_name, Project_price, Project_images,Project_description, Project_link],parseInt(Project_price, 10));
   
 
   ProjectArray.push({
     id: ProjectArray.length + 1,
-    images: newProject.images,
+    images: Project_images,
 
-    name: newProject.name,
-    description: newProject.description,
-    link: newProject.link,
-    price : newProject.price
+    name: Project_name,
+    description: Project_description,
+    link: Project_link,
+    price : Project_price
   })
 
 
