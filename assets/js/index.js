@@ -197,6 +197,8 @@ $('#body').on('click', '#tipbutton', async function(event){
   
   await contractCall('tipProject', [newid, tipValue], tipValue)
 
+  document.getElementById('#Successful').innerHTML("Thank You for the Tip")
+
   console.log("Tipped successfully")
 
   $('#tipValue').val('');
