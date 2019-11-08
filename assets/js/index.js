@@ -182,21 +182,19 @@ $('#body').on('click', '#tipbutton', async function(event){
 
   dataIndex = ProjectArray.length
 
-  const tipValue = ($('#tipValue').val());
+  const tipValue = parseInt($('.tipvalue').val());
   console.log(tipValue)
+  console.log(dataIndex)
 
   
 
   
 
-  var tobetipped = await callStatic('getProject', [dataIndex])
-
-  newid = parseInt(tobetipped.id,10) 
 
 
 
   
-  await contractCall('tipProject', [newid, tipValue], tipValue)
+  await contractCall('tipProject', [dataIndex, tipValue], tipValue)
 
   document.getElementById("Successful").innerHTML = "Thank You for the Tip" ;
 
