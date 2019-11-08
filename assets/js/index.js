@@ -153,7 +153,8 @@ $('#regBtn').click(async function(){
   const Project_link = ($('#projectlink').val());
 
 
-  newProject =await contractCall('addProject', [Project_name, Project_price, Project_images,Project_description, Project_link],parseInt(Project_price, 10));
+  newProject = await contractCall('addProject', [Project_name, Project_price, Project_images,Project_description, Project_link],parseInt(Project_price, 10));
+  console.log(newProject)
   
   
 
