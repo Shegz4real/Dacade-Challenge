@@ -72,7 +72,7 @@ window.addEventListener('load', async () => {
     console.log( "pushing to array")
 
     ProjectArray.push({
-      id: persons.id,
+      id: persons.user,
       images: persons.images,
       name: persons.name,
       documentation: persons.documentation,
