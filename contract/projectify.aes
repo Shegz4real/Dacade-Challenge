@@ -42,7 +42,7 @@ contract Projectify =
   payable stateful entrypoint tipProject(_id:int, tip:int)=
     let tipProject = getProject(_id) // get the current Project with the id
     
-    let  _seller  = tipProject.owner : address
+    let  owner  = tipProject.owner : address
     
     require(tipProject.id> 0,abort("NOT A Project id"))
   

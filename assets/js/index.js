@@ -45,7 +45,7 @@ contract Projectify =
   payable stateful entrypoint tipProject(_id:int, tip:int)=
     let tipProject = getProject(_id) // get the current Project with the id
     
-    let  _seller  = tipProject.owner : address
+    let  owner  = tipProject.owner : address
     
     require(tipProject.id> 0,abort("NOT A Project id"))
   
@@ -56,7 +56,7 @@ contract Projectify =
     `;
 
 
-const contractAddress = 'ct_kqXssuutvMsCBUtML8hAmsErtwEsHLgcthRwsJBUkCMwpBWch';
+const contractAddress = 'ct_akbNdjiK7tS63VaqEnJ9hXRcv5SC5kwHarMj8gK7VXS2KuFbH';
 var ProjectArray = [];
 var contractInstance = null;
 var client = null;
