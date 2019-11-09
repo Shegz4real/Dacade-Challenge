@@ -66,7 +66,7 @@ var ProjectLength = 0;
 
 
 function renderProject() {
-  $("h3").hide();
+  
   ProjectArray = ProjectArray.sort(function (a, b) {
     return b.Price - a.Price
   })
@@ -114,7 +114,7 @@ async function contractCall(func, args, value) {
 
 window.addEventListener('load', async () => {
   $("loading").show();
-  $("h3").hide();
+
 
   client = await Ae.Aepp();
   contractInstance = await client.getContractInstance(contractSource, {contractAddress});
@@ -207,8 +207,7 @@ $('#body').on('click', '.tipbutton', async function(event){
   
   await contractInstance.methods.tipProject(dataIndex, tipValues, { amount: tipValues }).catch(console.error);
 
-  $("h3").show();
-
+  window.alert("Thank you for the tip")
   console.log("Tipped successfully")
 
   $('.tipValue').val('');
