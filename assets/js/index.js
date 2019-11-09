@@ -58,6 +58,7 @@ contract Projectify =
 
 const contractAddress = 'ct_kqXssuutvMsCBUtML8hAmsErtwEsHLgcthRwsJBUkCMwpBWch';
 var ProjectArray = [];
+var contractInstance = null;
 var client = null;
 var ProjectLength = 0;
 
@@ -112,8 +113,8 @@ async function contractCall(func, args, value) {
 window.addEventListener('load', async () => {
   $("loading").show();
 
-  client = await Ae.Aepp()
-
+  client = await Ae.Aepp();
+  contractInstance = await client.getContractInstance(contractSource, {contractAddress});
   ProjectLength = await callStatic('getProjectLength', []);
 
 
@@ -153,7 +154,7 @@ $('#regBtn').click(async function(){
   const Project_link = ($('#projectlink').val());
 
 
-  newProject = await contractCall('addProject', [Project_name, Project_price, Project_images,Project_description, Project_link],parseInt(Project_price, 10));
+  const newProject = await contractInstance.methods.addProject(Project_name, Project_price, Project_images,Project_description, Project_link, { amount: Project_price }).catch(console.error);
   console.log(newProject)
   
   
@@ -198,7 +199,7 @@ $('#body').on('click', '.tipbutton', async function(event){
 
 
   
-  await contractCall('tipProject', [dataIndex, tipValue], tipValue)
+  await contractInstance.methods.tipProject(dataIndex, tipAmount, { amount: tipAmount }).catch(console.error);
 
   document.getElementById("Successful").innerHTML = "Thank You for the Tip" ;
 
