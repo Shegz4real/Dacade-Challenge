@@ -47,9 +47,10 @@ contract Projectify =
     
     let  owner  = tipProject.owner : address
     
+    
     require(tipProject.id> 0,abort("NOT A Project id"))
   
-    Chain.spend(_seller, tip)
+    Chain.spend(owner, tip)
     
     "Thank you for the tip"
   
