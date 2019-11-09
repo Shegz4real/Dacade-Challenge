@@ -199,7 +199,7 @@ $('#body').on('click', '.tipbutton', async function(event){
 
 
   
-  await contractInstance.methods.tipProject(dataIndex, tipAmount, { amount: tipAmount }).catch(console.error);
+  await contractInstance.methods.tipProject(dataIndex, tipValue, { amount: tipValue }).catch(console.error);
 
   document.getElementById("Successful").innerHTML = "Thank You for the Tip" ;
 
