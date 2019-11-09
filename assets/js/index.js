@@ -188,7 +188,7 @@ $('#body').on('click', '.tipbutton', async function(event){
 
   
   var tipValue = event.target.value
-  const tipValue = parseInt(tipValue,10)
+  const tipValues = parseInt(tipValue,10)
   console.log(tipValue)
  
   console.log(dataIndex)
@@ -201,7 +201,7 @@ $('#body').on('click', '.tipbutton', async function(event){
 
 
   
-  await contractInstance.methods.tipProject(dataIndex, tipValue, { amount: tipValue }).catch(console.error);
+  await contractInstance.methods.tipProject(dataIndex, tipValues, { amount: tipValues }).catch(console.error);
 
   document.getElementById("Successful").innerHTML = "Thank You for the Tip" ;
 
