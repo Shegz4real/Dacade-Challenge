@@ -187,8 +187,8 @@ $('#body').on('click', '.tipbutton', async function(event){
 
 
   
-  const tipValue = event.target.value
-  tipValue = parseInt(tipValue,10)
+  var tipValue = event.target.value
+  const tipValue = parseInt(tipValue,10)
   console.log(tipValue)
  
   console.log(dataIndex)
