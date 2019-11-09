@@ -207,7 +207,7 @@ $('#body').on('click', '.tipbutton', async function(event){
 
   console.log("Tipped successfully")
 
-  $('#tipValue').val('');
+  $('.tipValue').val('');
 
 
   $("#loading").hide();
