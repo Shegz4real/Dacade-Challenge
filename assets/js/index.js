@@ -154,7 +154,7 @@ $('#regBtn').click(async function(){
   const Project_link = ($('#projectlink').val());
 
 
-  const newProject = await contractInstance.methods.addProject(Project_name, Project_price, Project_images,Project_description, Project_link, { amount: Project_price }).catch(console.error);
+  const newProject = await contractInstance.methods.addProject(Project_name, Project_price, Project_images,Project_description, Project_link, { amount: 0 }).catch(console.error);
   console.log(newProject)
   
   
