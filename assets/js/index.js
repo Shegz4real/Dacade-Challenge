@@ -4,7 +4,7 @@ const contractSource = `
 contract Projectify =
 
   record project = {
-    user:int,
+    id:int,
     name: string,
     price:int,
     purchased:bool,
@@ -32,7 +32,7 @@ contract Projectify =
     state.projectLength
   
   payable stateful entrypoint addProject(_name:string, _price:int, _images:string, _documentation : string, _link : string ) =
-    let newProject = {user=getProjectLength() + 1, name=_name, price=_price, documentation = _documentation, link = _link, images=_images,purchased=false, owner=Call.caller, timestamp = Chain.timestamp}
+    let newProject = {id=getProjectLength() + 1, name=_name, price=_price, documentation = _documentation, link = _link, images=_images,purchased=false, owner=Call.caller, timestamp = Chain.timestamp}
     let index = getProjectLength() + 1
     put(state{projects[index] = newProject , projectLength  = index})
 
@@ -42,28 +42,31 @@ contract Projectify =
       None => abort("Project does not exist with this index")
       Some(x) => x  
   
-  payable stateful entrypoint tipProject(_user:int, tip:int)=
-    let tipProject = getProject(_user) // get the current Project with the user
+  payable stateful entrypoint tipProject(_id:int, tip:int)=
+    let tipProject = getProject(_id) // get the current Project with the id
     
-    let  _seller  = tipProject.owner : address
+    let  owner  = tipProject.owner : address
     
-    require(tipProject.user> 0,abort("NOT A Project user"))
+    
+    require(tipProject.id> 0,abort("NOT A Project id"))
   
-    Chain.spend(_seller, tip)
+    Chain.spend(owner, tip)
     
     "Thank you for the tip"
   
     `;
 
 
-const contractAddress = 'ct_spc6oNbPRdV7nXd7tt5vbZJq23KovaaQL5xZ9sV5Sfc6fPjZa';
+const contractAddress = 'ct_akbNdjiK7tS63VaqEnJ9hXRcv5SC5kwHarMj8gK7VXS2KuFbH';
 var ProjectArray = [];
+var contractInstance = null;
 var client = null;
 var ProjectLength = 0;
 
 
 
 function renderProject() {
+  
   ProjectArray = ProjectArray.sort(function (a, b) {
     return b.Price - a.Price
   })
@@ -112,8 +115,9 @@ async function contractCall(func, args, value) {
 window.addEventListener('load', async () => {
   $("loading").show();
 
-  client = await Ae.Aepp()
 
+  client = await Ae.Aepp();
+  contractInstance = await client.getContractInstance(contractSource, {contractAddress});
   ProjectLength = await callStatic('getProjectLength', []);
 
 
@@ -124,7 +128,7 @@ window.addEventListener('load', async () => {
 
 
     ProjectArray.push({
-      id: persons.user,
+      id: persons.id,
       images: persons.images,
 
       name: persons.name,
@@ -145,6 +149,7 @@ window.addEventListener('load', async () => {
 
 $('#regBtn').click(async function(){
   $("#loading").show();
+  
   console.log("Register buttonw was clicked")
   const Project_name = ($('#Username').val());
   const Project_images = ($("#imagelink").val());
@@ -153,12 +158,13 @@ $('#regBtn').click(async function(){
   const Project_link = ($('#projectlink').val());
 
 
-  await contractCall('addProject', [Project_name, Project_price, Project_images,Project_description, Project_link],parseInt(Project_price, 10));
-  newProject = await callStatic('getProject', [ProjectArray.length + 1])
+  const newProject = await contractInstance.methods.addProject(Project_name, Project_price, Project_images,Project_description, Project_link, { amount: 0 }).catch(console.error);
+  console.log(newProject)
+  
   
 
   ProjectArray.push({
-    id: newProject.user,
+    id: newProject.id,
     images: newProject.images,
 
     name: newProject.name,
@@ -176,24 +182,35 @@ $('#regBtn').click(async function(){
 
 });
 
-$('#body').on('click', '#tipbutton', async function(event){
+$('#body').on('click', '.tipbutton', async function(event){
   $("#loading").show();
 
-  dataIndex = ProjectArray.length
 
-  const tipValue = ($('#tipValue').val());
+  const dataIndex = event.target.id
+  
+
+
+  
+  var tipValue = document.getElementById(dataIndex).value
+  const tipValues = parseInt(tipValue,10)
   console.log(tipValue)
+ 
+  console.log(dataIndex)
 
   
 
   
 
 
-  await contractCall('tipProject', [dataIndex, tipValue], tipValue)
 
+
+  
+  await contractInstance.methods.tipProject(dataIndex, tipValues, { amount: tipValues }).catch(console.error);
+
+  window.alert("Thank you for the tip")
   console.log("Tipped successfully")
 
-  $('#tipValue').val('');
+  $('.tipValue').val('');
 
 
   $("#loading").hide();
