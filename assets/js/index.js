@@ -7,7 +7,6 @@ contract Projectify =
     id:int,
     name: string,
     price:int,
-    purchased:bool,
     documentation : string,
     link : string,
     images:string,
@@ -124,7 +123,7 @@ window.addEventListener('load', async () => {
   for (let i = 1; i <= ProjectLength; i++) {
     const persons = await callStatic('getProject', [i]);
 
-    console.log( "pushing to array")
+   
 
 
     ProjectArray.push({
@@ -159,7 +158,7 @@ $('#regBtn').click(async function(){
 
 
   const newProject = await contractInstance.methods.addProject(Project_name, Project_price, Project_images,Project_description, Project_link, { amount: 0 }).catch(console.error);
-  console.log(newProject)
+ 
   
   
 
@@ -192,10 +191,8 @@ $('#body').on('click', '.tipbutton', async function(event){
 
   
   var tipValue = document.getElementById(dataIndex).value
-  const tipValues = parseInt(tipValue,10)
-  console.log(tipValue)
+  const tipValues = parseInt(tipValue,10);
  
-  console.log(dataIndex)
 
   
 

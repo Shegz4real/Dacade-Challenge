@@ -4,7 +4,6 @@ contract Projectify =
     id:int,
     name: string,
     price:int,
-    purchased:bool,
     documentation : string,
     link : string,
     images:string,
